@@ -8,13 +8,17 @@ const pokeData = await getPokemonData(twentyFiveUrl);
 
 console.log(pokeData);
 
+const pokemonObjects = pokeData.results.map((pokemon) => pokemon);
+
+console.log(pokemonObjects);
+
 function App () {  
   return (
     <>
       <PokemonSearch />
       <div className="App">
-        {pokeData.results.map((pokemon) => (
-          <PokemonCard key={pokemon.name} wholePokemon={pokemon}/>
+        {pokemonObjects.map((pokemon) => (
+          <PokemonCard key={pokemon.name} pokemon={pokemon}/> 
         ))}
       </div>
     </>
