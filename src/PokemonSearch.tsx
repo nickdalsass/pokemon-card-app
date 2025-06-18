@@ -1,5 +1,3 @@
-import React from "react";
-
 const PokemonSearch = () => {
     return (
         <header className="search-bar">
