@@ -1,13 +1,13 @@
+import React from "react";
 import { getPokemonData } from "./PokemonLoader.ts";
 
-async function PokemonCard ({ pokemon }) {
-    
-    const singlePokemonData = await getPokemonData(pokemon.url);
+function PokemonCard ({ wholePokemon }) {
+    const wholePokemonData = await getPokemonData(wholePokemon.url);
 
     return (
         <div className="pokemon-card">
             <div className="pokemon-card-container">
-                <h5>{singlePokemonData.name}</h5>
+                <h5>{wholePokemon.name}</h5>
                 <div 
                     style={{ 
                         display:'flex', 
@@ -20,7 +20,7 @@ async function PokemonCard ({ pokemon }) {
                         borderRadius:'10px'
                     }}
                     >
-                    <img src={singlePokemonData.sprites.front_default} alt="Pokemon Avatar" style={{ width:'100%' }}/>
+                    <img src={wholePokemonData.sprites} alt="Pokemon Avatar" style={{ width:'100%' }}/>
                 </div>    
                 <p>This is a pokemon card</p>
             </div>

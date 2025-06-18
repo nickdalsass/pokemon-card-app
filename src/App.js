@@ -6,8 +6,7 @@ import PokemonSearch from './PokemonSearch.tsx';
 const twentyFiveUrl = "https://pokeapi.co/api/v2/pokemon?limit=25&offset=0"
 const pokeData = await getPokemonData(twentyFiveUrl);
 
-
-console.log(pokemonObjects);
+console.log(pokeData);
 
 function App () {  
   return (
@@ -15,7 +14,7 @@ function App () {
       <PokemonSearch />
       <div className="App">
         {pokeData.results.map((pokemon) => (
-          <PokemonCard key={pokemon.name} pokemon={pokemon}/>
+          <PokemonCard key={pokemon.name} wholePokemon={pokemon}/>
         ))}
       </div>
     </>
