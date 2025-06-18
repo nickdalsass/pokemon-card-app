@@ -6,11 +6,7 @@ import PokemonSearch from './PokemonSearch.tsx';
 const twentyFiveUrl = "https://pokeapi.co/api/v2/pokemon?limit=25&offset=0"
 const pokeData = await getPokemonData(twentyFiveUrl);
 
-console.log(pokeData);
-
 const pokemonObjects = pokeData.results.map((pokemon) => pokemon);
-
-console.log(pokemonObjects);
 
 function App () {  
   return (
