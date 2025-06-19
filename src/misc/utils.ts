@@ -50,3 +50,18 @@ export function setCardBackground (pokemonType, isFlying) {
             return '/type-images/default.jpg'
     }
 }
+
+export function truncatePokemonName (pokemonName) {
+    const separator = '-';
+    const hasSeparator = pokemonName.includes(separator);
+
+    if(pokemonName.includes("mr-mime")) { // stupid edge case
+        return "mr-mime";
+    } else if (pokemonName.includes("mr-rime")) {
+        return pokemonName;
+    } else if (hasSeparator) {
+        return pokemonName.slice(0, pokemonName.indexOf(separator));
+    } else {
+        return pokemonName;
+    }
+}
