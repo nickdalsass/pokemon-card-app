@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { capitalizeFirstLetter } from "./misc/utils.ts";
 import { setCardBackground } from "./misc/utils.ts";
@@ -37,7 +38,7 @@ const PokemonCard = ({ pokemon }) => {
         }}
       >
         <div className="pokemon-card-container">
-          <div style={{ display:'flex', justifyContent:"center", alignSelf:'center', gap:'7%', width:"900px" }}>
+          <div style={{ display:'flex', justifyContent:"center", alignItems:'center', gap:'7%', width:"900px" }}>
             <p className="card-small-box">{capitalizeFirstLetter(pokemonName)}</p>
 						<img className="pokeball-image"src="/images/pokeball.jpg" alt="Pokeball"/>
             <p className="card-small-box">{pokemonHP} HP</p>
@@ -49,18 +50,24 @@ const PokemonCard = ({ pokemon }) => {
               style={{ pointerEvents: "none", width: "50%" }}
             />
           </div>
-          <p
+          <p className="card-small-box"
             style={{
               width: "100%",
               height: "200px",
-              borderRadius: "10px",
-              border: "2px solid black",
-              backgroundColor: "gold",
-              fontFamily: "fantasy",
-              fontSize: "40px",
-              color: "black",
+              fontSize: "30px",
             }}
-          ></p>
+          >
+            Pokemon abilities
+          </p>
+          <p className="card-small-box"
+            style={{
+              width: "100%",
+              height: "200px",
+              fontSize: "30px",
+            }}
+          >
+            Other stats
+          </p>
         </div>
       </div>
     </>
