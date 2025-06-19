@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { capitalizeFirstLetter } from "./misc/utils.ts";
 import { setCardBackground } from "./misc/utils.ts";
@@ -37,10 +38,10 @@ const PokemonCard = ({ pokemon }) => {
         }}
       >
         <div className="pokemon-card-container">
-          <div style={{ display:'flex', justifyContent:"center", alignSelf:'center', gap:'7%', width:"900px" }}>
-            <p className="card-small-box">{capitalizeFirstLetter(pokemonName)}</p>
+          <div style={{ display:'flex', justifyContent:"center", alignItems:'center', gap:'7%', width:"900px" }}>
+            <section className="top-small-box">{capitalizeFirstLetter(pokemonName)}</section>
 						<img className="pokeball-image"src="/images/pokeball.jpg" alt="Pokeball"/>
-            <p className="card-small-box">{pokemonHP} HP</p>
+            <section className="top-small-box" style={{ fontSize:'70px' }}>{pokemonHP} HP</section>
           </div>
           <div className="background-image-container">
             <img
@@ -49,18 +50,24 @@ const PokemonCard = ({ pokemon }) => {
               style={{ pointerEvents: "none", width: "50%" }}
             />
           </div>
-          <p
+          <p className="bottom-small-box"
             style={{
               width: "100%",
               height: "200px",
-              borderRadius: "10px",
-              border: "2px solid black",
-              backgroundColor: "gold",
-              fontFamily: "fantasy",
-              fontSize: "40px",
-              color: "black",
+              fontSize: "30px",
             }}
-          ></p>
+          >
+            Pokemon abilities
+          </p>
+          <p className="bottom-small-box"
+            style={{
+              width: "100%",
+              height: "200px",
+              fontSize: "30px",
+            }}
+          >
+            Other stats
+          </p>
         </div>
       </div>
     </>
