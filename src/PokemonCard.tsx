@@ -18,14 +18,15 @@ const PokemonCard = ({ pokemon }) => {
       .catch(console.error);
   }, [pokemon]);
 
-  if (!pokemonData) return console.log("Loading Pokemon...");
+  if (!pokemonData) return <div>Loading...</div>;
 
   const pokemonName = pokemonData.name;
   const pokemonImageUrl = pokemonData.sprites?.front_default;
   const pokemonType = pokemonData.types[0]?.type?.name;
-  const cardBackgroundUrl = setCardBackground(pokemonType);
-  const pokemonHP = pokemonData.stats[0].base_stat;
-  //const pokemonBaseStats
+  const isFlying = pokemonData.types[1]?.type?.name;
+  const cardBackgroundUrl = setCardBackground(pokemonType, isFlying);
+  const pokemonStats = pokemonData.stats.map((singleStat) => singleStat);
+  const pokemonAbilities = pokemonData.abilities.map((singleAbility) => singleAbility);
 
   return (
     <>
@@ -38,10 +39,25 @@ const PokemonCard = ({ pokemon }) => {
         }}
       >
         <div className="pokemon-card-container">
-          <div style={{ display:'flex', justifyContent:"center", alignItems:'center', gap:'7%', width:"900px" }}>
-            <section className="top-small-box">{capitalizeFirstLetter(pokemonName)}</section>
-						<img className="pokeball-image"src="/images/pokeball.jpg" alt="Pokeball"/>
-            <section className="top-small-box" style={{ fontSize:'70px' }}>{pokemonHP} HP</section>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "7%",
+              width: "900px",
+            }}
+          >
+            <section className="top-small-box">
+              {capitalizeFirstLetter(pokemonName)}
+            </section>
+            <img
+              className="pokeball-image"
+              src="/images/pokeball.jpg"
+              alt="Pokeball"
+            />
+            <section className="top-small-box" style={{ fontSize: "70px" }}>
+              {pokemonStats[0].base_stat} HP
+            </section>
           </div>
           <div className="background-image-container">
             <img
@@ -50,24 +66,33 @@ const PokemonCard = ({ pokemon }) => {
               style={{ pointerEvents: "none", width: "50%" }}
             />
           </div>
-          <p className="bottom-small-box"
-            style={{
-              width: "100%",
-              height: "200px",
-              fontSize: "30px",
-            }}
-          >
-            Pokemon abilities
-          </p>
-          <p className="bottom-small-box"
-            style={{
-              width: "100%",
-              height: "200px",
-              fontSize: "30px",
-            }}
-          >
-            Other stats
-          </p>
+            <section className="bottom-small-box" style={{ fontSize:'48px' }}>
+            {pokemonStats.map((pokeStat) => {
+              if (pokeStat?.stat?.name !== "hp") {
+                return (
+                  <li style={{ listStyleType: "none", padding: "10px" }}>
+                    {capitalizeFirstLetter(pokeStat?.stat?.name)}:{"   "}
+                    {pokeStat?.base_stat}
+                  </li>
+                );
+              }
+            })}
+          </section>
+          <section
+            className="bottom-small-box">
+              <div style={{ fontSize:'55px', padding:'30px' }}>
+                Abilities:
+                {pokemonAbilities.map((singleAbility) => {
+                  {
+                    return (
+                      <span style={{ wordSpacing:'50px', fontSize:'45px' }}>
+                      {" "}•{capitalizeFirstLetter(singleAbility?.ability?.name)}
+                      </span>
+                    );
+                  }
+                })}
+              </div>
+          </section>
         </div>
       </div>
     </>

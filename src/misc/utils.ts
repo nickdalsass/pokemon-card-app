@@ -6,7 +6,11 @@ export function capitalizeFirstLetter (str) {
     }
 }
 
-export function setCardBackground (pokemonType) {    
+export function setCardBackground (pokemonType, isFlying) {    
+    if(isFlying === "flying" && pokemonType !== "dragon"){
+        return '/type-images/flying.jpg';
+    }
+    
     switch(pokemonType) {
         case "grass":
             return '/type-images/grass.jpg';
@@ -26,8 +30,6 @@ export function setCardBackground (pokemonType) {
             return '/type-images/ground.jpg'
         case "fighting":
             return '/type-images/fighting.jpg'
-        case "flying":
-            return '/type-images/flying.jpg'
         case "poison":
             return '/type-images/poison.jpg'
         case "rock":

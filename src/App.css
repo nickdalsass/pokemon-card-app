@@ -45,7 +45,7 @@
   justify-content: center;
   background-image: url('./images/pokemoncard_forest.png');
   background-size: cover;
-  border: 20px solid gold;
+  border: 20px solid #FFD700;
   border-radius: 10px; 
 }
 .pokeball-image {
@@ -61,18 +61,23 @@
 	height: 80px;
   border-radius: 10px;
   border: 2px solid black;
-  background-color: gold;
+  background-color: #FFD700;
   font-family: Copperplate, fantasy;
   font-size: 50px;
   color: black
 }
 
 .bottom-small-box {
-  width: 800px;
-	height: 80px;
+  margin-top: 30px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 900px;
+	height: 200px;
   border-radius: 10px;
   border: 2px solid black;
-  background-color: gold;
+  background-color: #FFD700;
   font-family: Copperplate, fantasy;
   font-size: 50px;
   color: black

@@ -3,7 +3,7 @@ import { getPokemonData } from './PokemonLoader.ts';
 import PokemonCard from './PokemonCard.tsx';
 import PokemonSearch from './PokemonSearch.tsx';
 
-const twentyFiveUrl = "https://pokeapi.co/api/v2/pokemon?limit=400&offset=0"
+const twentyFiveUrl = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
 const pokeData = await getPokemonData(twentyFiveUrl);
 
 const pokemonObjects = pokeData.results.map((pokemon) => pokemon);
