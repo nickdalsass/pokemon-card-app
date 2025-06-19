@@ -39,9 +39,9 @@ const PokemonCard = ({ pokemon }) => {
       >
         <div className="pokemon-card-container">
           <div style={{ display:'flex', justifyContent:"center", alignItems:'center', gap:'7%', width:"900px" }}>
-            <p className="card-small-box">{capitalizeFirstLetter(pokemonName)}</p>
+            <section className="top-small-box">{capitalizeFirstLetter(pokemonName)}</section>
 						<img className="pokeball-image"src="/images/pokeball.jpg" alt="Pokeball"/>
-            <p className="card-small-box">{pokemonHP} HP</p>
+            <section className="top-small-box" style={{ fontSize:'70px' }}>{pokemonHP} HP</section>
           </div>
           <div className="background-image-container">
             <img
@@ -50,7 +50,7 @@ const PokemonCard = ({ pokemon }) => {
               style={{ pointerEvents: "none", width: "50%" }}
             />
           </div>
-          <p className="card-small-box"
+          <p className="bottom-small-box"
             style={{
               width: "100%",
               height: "200px",
@@ -59,7 +59,7 @@ const PokemonCard = ({ pokemon }) => {
           >
             Pokemon abilities
           </p>
-          <p className="card-small-box"
+          <p className="bottom-small-box"
             style={{
               width: "100%",
               height: "200px",
