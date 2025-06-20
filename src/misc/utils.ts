@@ -44,8 +44,6 @@ export function setCardBackground (pokemonType, isFlying) {
             return '/type-images/psychic.jpg'
         case "dark":
             return '/type-images/dark.jpg'
-        case "stellar":
-            return '/type-images/stellar.jpg'
         default:
             return '/type-images/default.jpg'
     }

@@ -1,33 +1,16 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { memo } from "react";
 import { capitalizeFirstLetter, truncatePokemonName } from "./misc/utils.ts";
 import { setCardBackground } from "./misc/utils.ts";
 
-const PokemonCard = ({ pokemon }) => {
-  const [pokemonData, setPokemonData] = useState(null);
-
-  const fetchPokemonResponse = async () => {
-    const pokemonResponse = await fetch(pokemon.url);
-    const data = await pokemonResponse.json();
-    return data;
-  };
-
-  useEffect(() => {
-    fetchPokemonResponse()
-      .then((data) => setPokemonData(data))
-      .catch(console.error);
-  }, [pokemon]);
-
-  if (!pokemonData) return <div>Loading...</div>;
-
+const PokemonCard = ({ pokemonData }) => {
   const pokemonName = pokemonData.name;
   const trimmedName = truncatePokemonName(pokemonName);
-  const pokemonImageUrl = pokemonData.sprites?.front_default;
-  const pokemonTypes = pokemonData.types;
-  const pokemonType = pokemonData.types[0]?.type?.name;
+  const pokemonSpriteUrl = pokemonData.sprites?.front_default;
+  const pokemonDefaultType = pokemonData.types[0]?.type?.name;
   const isFlying = pokemonData.types[1]?.type?.name;
-  const cardBackgroundUrl = setCardBackground(pokemonType, isFlying);
+  const cardBackgroundUrl = setCardBackground(pokemonDefaultType, isFlying);
   const pokemonStats = pokemonData.stats.map((singleStat) => singleStat);
+  const pokemonHP = pokemonStats[0].base_stat;
   const pokemonAbilities = pokemonData.abilities.map(
     (singleAbility) => singleAbility
   );
@@ -43,14 +26,7 @@ const PokemonCard = ({ pokemon }) => {
         }}
       >
         <div className="pokemon-card-container">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "7%",
-              width: "900px",
-            }}
-          >
+          <div className="pokemon-card-header">
             <section className="top-small-box" style={{ fontSize: "50px" }}>
               {capitalizeFirstLetter(trimmedName)}
             </section>
@@ -60,27 +36,29 @@ const PokemonCard = ({ pokemon }) => {
               alt="Pokeball"
             />
             <section className="top-small-box" style={{ fontSize: "60px" }}>
-              {pokemonStats[0].base_stat} HP
+              {pokemonHP} HP
             </section>
           </div>
-          <div className="background-image-container">
+          <div
+            className="background-image-container"
+            style={{ backgroundImage: 'url("/images/pokeforest.jpg")' }}
+          >
             <img
-              src={pokemonImageUrl}
+              src={pokemonSpriteUrl}
               alt="Pokemon Avatar"
               style={{ pointerEvents: "none", width: "50%" }}
             />
           </div>
           <section className="bottom-small-box" style={{ fontSize: "48px" }}>
             {pokemonStats.map((pokeStat) => {
-              // eslint-disable-next-line no-lone-blocks
-              {if (pokeStat?.stat?.name !== "hp") {
-                return (
-                  <li style={{ listStyleType: "none", padding: "10px" }}>
+              return (
+                pokeStat?.stat?.name !== "hp" && (
+                  <span style={{ padding: "10px" }}>
                     {capitalizeFirstLetter(pokeStat?.stat?.name)}:{"   "}
                     {pokeStat?.base_stat}
-                  </li>
-                );
-              }} 
+                  </span>
+                )
+              );
             })}
           </section>
           <section className="bottom-small-box">
@@ -89,7 +67,8 @@ const PokemonCard = ({ pokemon }) => {
               {pokemonAbilities.map((singleAbility) => {
                 return (
                   <span style={{ wordSpacing: "50px", fontSize: "45px" }}>
-                    {' '}&bull;{capitalizeFirstLetter(singleAbility?.ability?.name)}
+                    {" "}
+                    &bull;{capitalizeFirstLetter(singleAbility?.ability?.name)}
                   </span>
                 );
               })}
@@ -99,7 +78,7 @@ const PokemonCard = ({ pokemon }) => {
             className="bottom-small-box"
             style={{ height: "100px", wordSpacing: "50px" }}
           >
-            Type:{capitalizeFirstLetter(pokemonType)} Height:
+            Base-Type:{capitalizeFirstLetter(pokemonDefaultType)} Height:
             {pokemonData.height}
           </section>
         </div>
@@ -108,4 +87,4 @@ const PokemonCard = ({ pokemon }) => {
   );
 };
 
-export default PokemonCard;
+export default memo(PokemonCard);
