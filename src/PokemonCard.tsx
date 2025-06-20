@@ -72,28 +72,26 @@ const PokemonCard = ({ pokemon }) => {
           </div>
           <section className="bottom-small-box" style={{ fontSize: "48px" }}>
             {pokemonStats.map((pokeStat) => {
-              if (pokeStat?.stat?.name !== "hp") {
+              // eslint-disable-next-line no-lone-blocks
+              {if (pokeStat?.stat?.name !== "hp") {
                 return (
                   <li style={{ listStyleType: "none", padding: "10px" }}>
                     {capitalizeFirstLetter(pokeStat?.stat?.name)}:{"   "}
                     {pokeStat?.base_stat}
                   </li>
                 );
-              }
+              }} 
             })}
           </section>
           <section className="bottom-small-box">
             <div style={{ fontSize: "55px", padding: "30px" }}>
               Abilities:
               {pokemonAbilities.map((singleAbility) => {
-                {
-                  return (
-                    <span style={{ wordSpacing: "50px", fontSize: "45px" }}>
-                      {" "}
-                      •{capitalizeFirstLetter(singleAbility?.ability?.name)}
-                    </span>
-                  );
-                }
+                return (
+                  <span style={{ wordSpacing: "50px", fontSize: "45px" }}>
+                    {' '}&bull;{capitalizeFirstLetter(singleAbility?.ability?.name)}
+                  </span>
+                );
               })}
             </div>
           </section>
