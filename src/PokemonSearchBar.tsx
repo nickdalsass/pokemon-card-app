@@ -3,7 +3,7 @@ import NameForm from "./searchbar-forms/NameForm.tsx";
 import PokedexNumForm from "./searchbar-forms/PokedexNumForm.tsx";
 import TypeForm from "./searchbar-forms/TypeForm.tsx";
 
-const PokemonSearchBar = ({ onNameSearch, onTypeSearch, onNumberSearch }) => {
+const PokemonSearchBar = () => {
   return (
     <div className="search-bar">
       <div className="page-title">
@@ -19,9 +19,9 @@ const PokemonSearchBar = ({ onNameSearch, onTypeSearch, onNumberSearch }) => {
           alt="Dancing Pikachu"
           style={{ position: "relative", width: "100px" }}
         />
-        <NameForm onSearch={onNameSearch} />
-        <TypeForm onSearch={onTypeSearch} />
-        <PokedexNumForm onSearch={onNumberSearch} />
+        <NameForm />
+        <TypeForm />
+        <PokedexNumForm />
         <img
           src="/images/squirtle.gif"
           alt="Dancing Squirtle"

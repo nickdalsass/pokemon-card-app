@@ -1,12 +1,10 @@
 .App {
-  text-align: center;
   background-color: #3a3b3c;
   min-height: 100vh;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  align-items: start;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
@@ -14,6 +12,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.no-results-error {
+  font-size: calc(10px + 2vmin);
+  transform: translateY(-200px);
+  font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 .search-bar {
@@ -77,12 +81,13 @@
 }
 
 .pokemon-card {
+  margin-top: 20px;
+  margin-right: 20px;
   user-select: none;
   padding: 30px;
   border-radius: 40px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0);
   transition: 0.1s;
-  transform: scale(0.3);
 }
 
 .pokemon-card:hover {

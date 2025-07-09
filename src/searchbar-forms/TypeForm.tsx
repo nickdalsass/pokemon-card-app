@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import { FiltersContext } from "../context/FiltersContext.tsx";
 
-const TypeForm = ({ onSearch }) => {
+const TypeForm = () => {
   const [type, setType] = useState("");
+  const { filters, setFilters } = useContext(FiltersContext); 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSearch(type);
+    const newFilters = {...filters, type };
+    setFilters(newFilters);
   };
 
   return (
@@ -15,6 +19,7 @@ const TypeForm = ({ onSearch }) => {
         id="type-input"
         placeholder="Search by Pokemon Type..."
         type="text"
+        autoComplete="off"
         value={type}
         onChange={(e) => setType(e.target.value)}
       ></input>

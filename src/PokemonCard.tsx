@@ -1,10 +1,13 @@
-import React, { memo } from "react";
+import React, { useMemo } from "react";
 import { capitalizeFirstLetter, truncatePokemonName } from "./misc/utils.ts";
 import { setCardBackground } from "./misc/utils.ts";
 
 const PokemonCard = ({ pokemonData }) => {
   const pokemonName = pokemonData.name;
-  const trimmedName = truncatePokemonName(pokemonName);
+  const trimmedName = useMemo(
+    () => truncatePokemonName(pokemonName),
+    [pokemonName]
+  );
   const pokemonSpriteUrl = pokemonData.sprites?.front_default;
   const pokemonDefaultType = pokemonData.types[0]?.type?.name;
   const isFlying = pokemonData.types[1]?.type?.name;
@@ -66,9 +69,10 @@ const PokemonCard = ({ pokemonData }) => {
               Abilities:
               {pokemonAbilities.map((singleAbility) => {
                 return (
-                  <span style={{ wordSpacing: "50px", fontSize: "45px" }}>
+                  <span style={{ wordSpacing: "50px", fontSize: "50px" }}>
                     {" "}
-                    &bull;{capitalizeFirstLetter(singleAbility?.ability?.name)}
+                    &bull;
+                    {capitalizeFirstLetter(singleAbility?.ability?.name)}
                   </span>
                 );
               })}
@@ -87,4 +91,4 @@ const PokemonCard = ({ pokemonData }) => {
   );
 };
 
-export default memo(PokemonCard);
+export default PokemonCard;

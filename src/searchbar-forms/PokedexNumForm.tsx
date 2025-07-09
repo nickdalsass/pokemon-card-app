@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import { FiltersContext } from "../context/FiltersContext.tsx";
 
-const PokedexNumForm = ({ onSearch }) => {
+const PokedexNumForm = () => {
   const [pokedexNumber, setPokedexNumber] = useState("");
+  const { filters, setFilters } = useContext(FiltersContext); 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSearch(pokedexNumber);
+    const newFilters = {...filters, pokedexNumber };
+    setFilters(newFilters);
   };
 
   return (
@@ -15,8 +19,9 @@ const PokedexNumForm = ({ onSearch }) => {
         id="number-input"
         placeholder="Search by Pokedex Number..."
         type="text"
+        autoComplete="off"
         value={pokedexNumber}
-        onChange={(e) => setPokedexNumber(e.target.value)}
+        onChange={(event) => setPokedexNumber(event.target.value)}
       ></input>
       <button className="search-button">Search</button>
       <button
